@@ -1,0 +1,39 @@
+{{ define "main" }}
+<section class="taxonomy-page">
+	<h1>{{ .Title }}</h1>
+
+	<div class="taxonomy-posts">
+		{{ if .Pages }}
+			{{ range .Pages }}
+			<article class="blog-post-preview">
+				<div class="post-meta">
+					<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+					{{ if .Params.categories }}
+					<span class="post-category">
+						{{ range $i, $cat := .Params.categories }}
+							{{ if gt $i 0 }}, {{ end }}
+							<a href="/categories/{{ $cat | urlize }}/">{{ $cat }}</a>
+						{{ end }}
+					</span>
+					{{ end }}
+				</div>
+				<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+				<p class="post-summary">{{ .Summary }}</p>
+				<div class="post-tags">
+					{{ if .Params.tags }}
+					{{ range .Params.tags }}
+						<a href="/tags/{{ . | urlize }}/" class="tag">#{{ . }}</a>
+					{{ end }}
+					{{ end }}
+				</div>
+				<a href="{{ .Permalink }}" class="read-more">Read More →</a>
+			</article>
+			{{ end }}
+		{{ else }}
+			<p>No posts found for this {{ .Kind }}.</p>
+		{{ end }}
+	</div>
+
+	<p class="back-to-blog"><a href="/blog/">← Back to blog</a></p>
+</section>
+{{ end }}

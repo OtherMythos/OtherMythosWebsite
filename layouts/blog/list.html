@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="blog-header">
+	<h1>Blog</h1>
+	<p class="blog-description">Development updates and thoughts on game creation.</p>
+</section>
+
+<section class="blog-posts">
+	{{ if .Pages }}
+		{{ range .Pages }}
+		<article class="blog-post-preview">
+			<div class="post-meta">
+				<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+				{{ if .Params.categories }}
+				<span class="post-category">
+					{{ range $i, $cat := .Params.categories }}
+						{{ if gt $i 0 }}, {{ end }}
+						<a href="/categories/{{ $cat | urlize }}/">{{ $cat }}</a>
+					{{ end }}
+				</span>
+				{{ end }}
+			</div>
+			<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+			<p class="post-summary">{{ .Summary }}</p>
+			<div class="post-tags">
+				{{ if .Params.tags }}
+				{{ range .Params.tags }}
+					<a href="/tags/{{ . | urlize }}/" class="tag">#{{ . }}</a>
+				{{ end }}
+				{{ end }}
+			</div>
+			<a href="{{ .Permalink }}" class="read-more">Read More →</a>
+		</article>
+		{{ end }}
+	{{ else }}
+		<p>No blog posts yet. Check back soon!</p>
+	{{ end }}
+</section>
+{{ end }}

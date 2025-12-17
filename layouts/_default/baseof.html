@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ .Title }} - {{ .Site.Title }}</title>
+	<link rel="stylesheet" href="{{ .Site.BaseURL }}styles.css">
+	<link rel="icon" type="image/jpeg" href="{{ .Site.BaseURL }}icon.jpg">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<a href="{{ .Site.BaseURL }}" class="header-link">
+				<div class="logo">
+					<img src="{{ .Site.BaseURL }}icon.jpg" alt="OtherMythos logo">
+				</div>
+				<h1>{{ .Site.Title }}</h1>
+				<p class="tagline">Making games</p>
+			</a>
+		</header>
+
+		<nav class="social">
+			<a href="https://www.youtube.com/channel/UCUIWHmJMVfNSahrnPKzli3Q" title="YouTube">YouTube</a>
+			<a href="https://discord.gg/P47ykcg5ed" title="Discord">Discord</a>
+			<a href="https://x.com/OtherMythos" title="X">X</a>
+		</nav>
+
+		<main>
+			{{ block "main" . }}{{ end }}
+		</main>
+
+		<footer>
+			<p>&copy; {{ .Site.Params.copyrightYear }} Edward Herbert, OtherMythos. All rights reserved.</p>
+		</footer>
+	</div>
+</body>
+</html>

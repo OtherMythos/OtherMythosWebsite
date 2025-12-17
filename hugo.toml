@@ -1,0 +1,12 @@
+baseURL = 'https://othermythos.com/'
+languageCode = 'en-us'
+title = 'OtherMythos'
+theme = ''
+
+[taxonomies]
+tag = 'tags'
+category = 'categories'
+
+[params]
+authorName = 'Edward Herbert'
+copyrightYear = 2025
