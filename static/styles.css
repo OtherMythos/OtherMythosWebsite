@@ -203,6 +203,56 @@ h2{
 	line-height:1.8;
 }
 
+.support-section{
+	margin:2.5rem 0;
+}
+
+.support-card{
+	background:linear-gradient(135deg, rgba(196, 114, 168, 0.15) 0%, rgba(196, 114, 168, 0.05) 100%);
+	border:2px solid var(--accent);
+	border-radius:8px;
+	padding:2.5rem;
+	text-align:center;
+	transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.support-card:hover{
+	transform:translateY(-4px);
+	box-shadow:0 8px 24px rgba(196, 114, 168, 0.3);
+}
+
+.support-card h2{
+	font-size:1.8rem;
+	color:var(--text-primary);
+	margin-bottom:1rem;
+}
+
+.support-card p{
+	color:var(--text-secondary);
+	font-size:1.05rem;
+	line-height:1.8;
+	margin-bottom:1.5rem;
+}
+
+.patreon-button{
+	display:inline-block;
+	color:var(--bg-primary);
+	background-color:var(--accent);
+	text-decoration:none;
+	padding:0.9rem 2rem;
+	border-radius:6px;
+	font-size:1.1rem;
+	font-weight:500;
+	transition:background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+	box-shadow:0 4px 12px rgba(196, 114, 168, 0.4);
+}
+
+.patreon-button:hover{
+	background-color:#d988be;
+	transform:translateY(-2px);
+	box-shadow:0 6px 18px rgba(196, 114, 168, 0.5);
+}
+
 footer{
 	text-align:center;
 	padding-top:2rem;
