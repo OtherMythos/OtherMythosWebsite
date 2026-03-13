@@ -430,6 +430,31 @@ footer{
 	margin-bottom:1rem;
 }
 
+.post-content img{
+	max-width:100%;
+	height:auto;
+	display:block;
+}
+
+.post-figure{
+	margin-bottom:1rem;
+}
+
+.post-figure img{
+	max-width:100%;
+	height:auto;
+	display:block;
+}
+
+.post-figure figcaption{
+	margin-top:0.2rem;
+	padding-top:0.2rem;
+	border-bottom:1px solid var(--border);
+	font-style:italic;
+	font-size:0.9rem;
+	color:#777777;
+}
+
 .post-content ul, .post-content ol{
 	margin-left:2rem;
 	margin-bottom:1rem;
