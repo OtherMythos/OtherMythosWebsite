@@ -165,8 +165,8 @@ h2{
 .release-date{
 	display:inline-block;
 	font-size:0.9rem;
-	color:var(--accent);
-	background-color:rgba(212, 165, 116, 0.1);
+	color:var(--text-primary);
+	background-color:rgba(210, 120, 180, 1);
 	padding:0.4rem 0.8rem;
 	border-radius:4px;
 }
@@ -260,6 +260,222 @@ footer{
 	border-top:1px solid var(--border);
 	font-size:0.9rem;
 	color:var(--text-secondary);
+}
+
+/*Games section styles*/
+.released-games{
+	margin-bottom:3rem;
+}
+
+.released-games h2{
+	margin-bottom:1.5rem;
+}
+
+.games-grid{
+	display:grid;
+	grid-template-columns:1fr;
+	gap:2rem;
+	max-width:600px;
+	margin:0 auto;
+}
+
+.game-card-link{
+	display:block;
+	text-decoration:none;
+	color:inherit;
+}
+
+.released-games .game-card{
+	background-color:var(--bg-secondary);
+	border:1px solid var(--border);
+	border-radius:6px;
+	padding:2rem;
+	margin:0;
+	transition:border-color 0.2s ease, transform 0.2s ease;
+	position:relative;
+	overflow:hidden;
+	cursor:pointer;
+}
+
+.game-card-link:hover .game-card{
+	border-color:var(--accent);
+	transform:translateY(-2px);
+}
+
+.released-games .game-card::before{
+	content:'';
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-image:
+		linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0)),
+		url('/images/cat-hatch-screenshot.jpg'),
+		linear-gradient(to left, rgba(220, 165, 162, 1.0) 0%, rgba(220, 165, 162, 1.0) 50%, rgba(160, 100, 120, 0.8) 100%);
+	background-size:100% 100%, auto 200%, auto 200%;
+	background-position:left center, right center, right center;
+	background-repeat:no-repeat;
+	opacity:0.8;
+	z-index:0;
+}
+
+.released-games .game-card > *{
+	position:relative;
+	z-index:1;
+}
+
+.released-games .game-card h3,
+.released-games .game-card p{
+	text-shadow:0.5px 0.5px 0 rgba(0, 0, 0, 0.9);
+}
+
+.released-games .game-links{
+	display:flex;
+	gap:1rem;
+	flex-wrap:wrap;
+}
+
+.released-games .game-links span{
+	display:inline-block;
+	color:var(--bg-primary);
+	background-color:var(--accent);
+	padding:0.6rem 1.2rem;
+	border-radius:4px;
+	font-size:0.95rem;
+	pointer-events:none;
+}
+
+.games-section{
+	background-color:var(--bg-secondary);
+	border:1px solid var(--border);
+	border-radius:6px;
+	padding:2rem;
+}
+
+.games-header{
+	text-align:center;
+	margin-bottom:3rem;
+}
+
+.games-header h1{
+	font-size:2.5rem;
+	font-weight:400;
+	margin-bottom:0.5rem;
+	letter-spacing:2px;
+}
+
+.games-description{
+	color:var(--text-secondary);
+	font-size:1.1rem;
+	font-style:italic;
+}
+
+.games-list{
+	display:flex;
+	flex-direction:column;
+	gap:2.5rem;
+}
+
+.game-card-preview{
+	background-color:var(--bg-secondary);
+	border:1px solid var(--border);
+	border-radius:6px;
+	padding:2rem;
+	transition:border-color 0.2s ease;
+}
+
+.game-card-preview:hover{
+	border-color:var(--accent);
+}
+
+.game-card-preview h2{
+	font-size:1.6rem;
+	margin-bottom:0.75rem;
+	margin-top:0;
+}
+
+.game-card-preview h2 a{
+	color:var(--text-primary);
+	text-decoration:none;
+	transition:color 0.2s ease;
+}
+
+.game-card-preview h2 a:hover{
+	color:var(--accent);
+}
+
+.game-card-preview .game-description{
+	color:var(--text-secondary);
+	font-size:1rem;
+	line-height:1.8;
+	margin-bottom:1.5rem;
+	font-style:normal;
+}
+
+.game-page{
+	background-color:var(--bg-secondary);
+	border:1px solid var(--border);
+	border-radius:6px;
+	padding:2.5rem;
+}
+
+.game-page h1{
+	font-size:2.2rem;
+	font-weight:400;
+	margin-bottom:1rem;
+	color:var(--text-primary);
+}
+
+.game-page .game-description{
+	font-size:1.1rem;
+	color:var(--text-secondary);
+	margin-bottom:2rem;
+	font-style:italic;
+}
+
+.game-content{
+	margin-bottom:2.5rem;
+	line-height:1.9;
+	color:var(--text-secondary);
+}
+
+.game-content h2{
+	font-size:1.5rem;
+	margin-top:2rem;
+	margin-bottom:1rem;
+	color:var(--text-primary);
+}
+
+.game-content h3{
+	font-size:1.3rem;
+	margin-top:1.5rem;
+	margin-bottom:0.75rem;
+	color:var(--text-primary);
+}
+
+.game-content p{
+	margin-bottom:1rem;
+}
+
+.game-content ul, .game-content ol{
+	margin-left:2rem;
+	margin-bottom:1rem;
+}
+
+.game-content li{
+	margin-bottom:0.5rem;
+}
+
+.game-content a{
+	color:var(--accent);
+	text-decoration:none;
+	border-bottom:1px solid var(--accent);
+	transition:color 0.2s ease;
+}
+
+.game-content a:hover{
+	color:var(--text-primary);
 }
 
 /*Blog styles*/

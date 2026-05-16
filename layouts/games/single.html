@@ -1,0 +1,12 @@
+{{ define "main" }}
+<article class="game-page">
+	<h1>{{ .Title }}</h1>
+	{{ if .Description }}
+	<p class="game-description">{{ .Description }}</p>
+	{{ end }}
+
+	<div class="game-content">
+		{{ .Content }}
+	</div>
+</article>
+{{ end }}
