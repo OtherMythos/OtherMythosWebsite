@@ -78,7 +78,7 @@ We may update this Privacy Policy periodically. Any changes will be posted on th
 
 If you have questions or concerns about this Privacy Policy, please contact us at:
 
-**Email**: hello@othermythos.com
+**Email**: edward@othermythos.com
 **Website**: https://othermythos.com
 
 ---
