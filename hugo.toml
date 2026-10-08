@@ -1,7 +1,6 @@
 baseURL = 'https://othermythos.com/'
 languageCode = 'en-us'
 title = 'OtherMythos'
-theme = ''
 
 [taxonomies]
 tag = 'tags'
