@@ -1,0 +1,86 @@
+name: Build site
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: buildSite-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      HUGO_VERSION: 0.164.0
+      HUGO_SHA256: fea17b8c076f950bb2e9f9486667bdaa29422883888d509d63931c73e8a9b3a4
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Hugo
+        run: |
+          file=hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz
+          curl -fsSLo "$RUNNER_TEMP/$file" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/$file"
+          echo "$HUGO_SHA256  $RUNNER_TEMP/$file" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/$file" -C "$RUNNER_TEMP" hugo
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+
+      - name: Build
+        run: |
+          hugo version
+          hugo --minify --gc
+          hugo list published > "$RUNNER_TEMP/published.csv"
+
+      - name: Verify
+        run: python3 .github/verifySite.py public --published "$RUNNER_TEMP/published.csv"
+
+      - name: Upload site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: public
+          retention-days: 14
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-24.04
+    environment: production
+    concurrency:
+      group: deploySite
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: public
+
+      - name: Deploy
+        env:
+          FTP_USER: ${{ secrets.SITE_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.SITE_FTP_PASSWORD }}
+        run: |
+          if [ -z "$FTP_USER" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "::notice::SITE_FTP_USER/SITE_FTP_PASSWORD aren't set, so the site wasn't deployed"
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lftp
+          ip=$(getent ahostsv4 ftp.othermythos.com | awk 'NR == 1 { print $1 }')
+          echo "$ip ftp.hstgr.io" | sudo tee -a /etc/hosts
+          .github/deploySite.sh public
+          for page in / /blog/ /sitemap.xml; do
+            curl -fsS -o /dev/null "https://othermythos.com${page}?deploy=${GITHUB_SHA}"
+          done
