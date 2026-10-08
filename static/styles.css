@@ -646,7 +646,7 @@ footer{
 	margin-bottom:1rem;
 }
 
-.post-content img{
+.post-content img, .blog-post-preview img{
 	max-width:100%;
 	height:auto;
 	display:block;
